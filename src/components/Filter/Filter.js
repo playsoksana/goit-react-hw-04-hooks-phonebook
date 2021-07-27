@@ -3,21 +3,27 @@ import PropTypes from 'prop-types';
 import Input from '../Input';
 import Styles from './Filter.module.css';
 
-const Filter = ({ value, filterContacts }) => (
-  <div className={Styles.Container}>
-    <Input
-      value={value}
-      name="search"
-      textLabel="Find contact by name"
-      placeholder="Enter"
-      onChangeInput={filterContacts}
-    />
-  </div>
-);
+const Filter = ({ value, filterContacts, contacts }) => {
+  if (!contacts.length) {
+    return null;
+  }
+  return (
+    <div className={Styles.Container}>
+      <Input
+        value={value}
+        name="search"
+        textLabel="Find contact by name"
+        placeholder="Enter"
+        onChangeInput={filterContacts}
+      />
+    </div>
+  );
+};
 
 Filter.propTypes = {
   value: PropTypes.string.isRequired,
   filterContacts: PropTypes.func.isRequired,
+  contacts: PropTypes.array,
 };
 
 export default Filter;

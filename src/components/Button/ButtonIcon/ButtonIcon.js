@@ -4,7 +4,7 @@ import Styles from './ButtonIcon.module.css';
 
 const ButtonIcon = ({ children, toggleIsVisible, aria, classButton }) => (
   <button
-    className={(Styles[classButton], Styles.Button)}
+    className={[Styles[classButton]]}
     onClick={toggleIsVisible}
     aria-label={aria}
     type="button"

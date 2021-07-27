@@ -7,11 +7,9 @@ export function getLocal() {
   }
 }
 
-export function setLocal(contacts, prevContacts) {
+export function setLocal(contacts) {
   try {
-    if (prevContacts !== contacts) {
-      localStorage.setItem('contacts', JSON.stringify(contacts));
-    }
+    localStorage.setItem('contacts', JSON.stringify(contacts));
   } catch (error) {
     throw new Error();
   }

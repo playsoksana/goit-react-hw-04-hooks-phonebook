@@ -22,8 +22,10 @@
 
 .Icon {
   composes: Button;
+  display: inline-flex;
   top: 0;
   left: 40px;
+  background-color: red;
 }
 
 .Icon:hover,
