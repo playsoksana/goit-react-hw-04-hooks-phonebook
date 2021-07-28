@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 import Styles from './Modal.module.css';
 import ButtonIcon from '../Button/ButtonIcon';
 import PropTypes from 'prop-types';
@@ -8,18 +8,21 @@ import { createPortal } from 'react-dom';
 const modalRoot = document.querySelector('#modal-root');
 
 function Modal({ toggleIsVisible, children, isVisibleModal }) {
+  const handleKeyDown = useCallback(
+    ({ code }) => {
+      if (code === 'Escape') {
+        toggleIsVisible();
+      }
+    },
+    [toggleIsVisible],
+  );
+
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, []);
-
-  function handleKeyDown({ code }) {
-    if (code === 'Escape') {
-      toggleIsVisible();
-    }
-  }
+  }, [handleKeyDown]);
 
   function closeBackdropOnClick({ target, currentTarget }) {
     if (currentTarget === target) {
